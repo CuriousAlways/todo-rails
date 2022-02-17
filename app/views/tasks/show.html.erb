@@ -1,0 +1,61 @@
+<div class="task-detail">
+  <div class="task-header">
+    <div class="<%= @task.status %>">
+      <h2> <%= @task.title %> </h2>
+    </div>
+
+    <div class="icons">
+      <% unless @task.favourite? %>
+        <%= link_to task_path(@task, task: { favourite: true }), method: :patch do %>
+          <i class="fa-solid fa-star favourite-icon"></i>
+        <% end %>
+      <% else %>
+        <%= link_to  task_path(@task, task: { favourite: false }), method: :patch do %>
+          <i class="fa-solid fa-star"></i>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="icons">
+      <% unless @task.completed? %>
+        <%= link_to task_path(@task, task: { status: 'completed' }), method: :patch do %>
+          <i class="fa-solid fa-calendar-check"></i>
+        <% end%>
+      <% else %>
+        <%= link_to task_path(@task, task: { status: 'remaining' }), method: :patch do %>
+          <i class="fa-solid fa-circle-xmark"></i>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="icons">
+      <%= link_to edit_task_path(@task) do %>
+        <i class="fa-solid fa-pencil"></i>
+      <% end %>
+    </div>
+
+    <div class="icons">
+      <%= link_to task_path(@task), method: :delete, data: { confirm: "Do you want to delete task titled '#{@task.title}'"} do %>
+        <i class="fa-solid fa-trash-can"></i>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <p> <% @task.due_date %> </p>
+  </div>
+
+  <div>
+    <%= @task.description %>
+  </div>
+
+  <div class="task-actions">
+    <div>
+      <%= link_to tasks_path do %>
+        <i class="fa-solid fa-circle-arrow-left"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

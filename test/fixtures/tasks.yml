@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  favourite: false
+  status: 1
+  due_date: 2022-02-17 16:34:30
+
+two:
+  title: MyString
+  description: MyString
+  favourite: false
+  status: 1
+  due_date: 2022-02-17 16:34:30
