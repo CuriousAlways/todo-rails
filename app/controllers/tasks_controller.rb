@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %w(show edit update destroy)
 
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks
   end
 
   def show
@@ -13,7 +13,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(set_params)
+    @task = current_user.tasks.build(set_params)
     if @task.save
       redirect_to task_path(@task), notice: t('.created')
     else
@@ -38,16 +38,15 @@ class TasksController < ApplicationController
   end
 
   def favourite_tasks
-    @tasks = Task.favourite_tasks
+    @tasks = current_user.tasks.favourite_tasks
   end
 
   def completed_tasks
-    @tasks = Task.completed
+    @tasks = current_user.tasks.completed
   end
 
-
   private def set_task
-    @task = Task.find_by(id: params[:id])
+    @task = current_user.tasks.find_by(id: params[:id])
     redirect_to tasks_path, alert: t('.invalid_task') unless @task
   end
 
